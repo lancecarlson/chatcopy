@@ -9,7 +9,7 @@ module Chatcopy
       getter file_paths : Array(String)
     end
 
-    def initialize(@prompt : String, @file_tree : FileTree)
+    def initialize(@prompt : String, @file_tree : FileTree, @model : String)
       @client = OpenAI::Client.new(access_token: ENV.fetch("OPENAI_API_KEY"))
     end
 
@@ -18,7 +18,7 @@ module Chatcopy
       functions = [list_files]
 
       output = ""
-      @client.chat("gpt-3.5-turbo-0613", [
+      @client.chat(@model, [
         {role: "user", content: prepare_message},
       ], {"stream" => true, "functions" => functions}) do |chunk|
         if function_call = chunk.choices.first.delta.function_call
