@@ -6,16 +6,19 @@ module Chatcopy
     end
 
     def copy_to_clipboard
+      tempfile = File.tempfile("chatcpy") do |f|
+        f.print @code_suggestions
+      end
+
+      path = tempfile.path
+
       {% if flag?(:darwin) %}
-        system "echo #{@code_suggestions.inspect} | pbcopy"
+        system "pbcopy < #{path}"
       {% elsif flag?(:unix) %}
-        system "echo #{@code_suggestions.inspect} | xsel -ib"
+        system "xsel -ib < #{path}"
       {% elsif flag?(:win32) %}
-        system "echo #{@code_suggestions.inspect} | clip"
+        system "clip < #{path}"
       {% end %}
-    rescue ex
-      puts "Error while copying to clipboard: #{ex.message}"
-      exit
     end
   end
 end

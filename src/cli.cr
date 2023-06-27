@@ -31,8 +31,9 @@ module Chatcopy
       parse_arguments
       prompt = File.read(@file_path)
       file_tree = FileTree.new
-      code_suggestions = FileSearcher.new(prompt, file_tree).relevant_code
-      ClipboardManager.new(code_suggestions).copy_to_clipboard
+      output = FileSearcher.new(prompt, file_tree).relevant_code
+      output += prompt
+      ClipboardManager.new(output).copy_to_clipboard
     end
   end
 

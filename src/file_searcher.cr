@@ -32,10 +32,10 @@ module Chatcopy
 
     def relevant_code
       relevant_files.map do |path|
-        puts "File path: #{path}"
+        output = "File path: #{path}\n"
         content = File.read(path)
-        puts "File content: \n#{content}\n"
-        content
+        output += "File content: \n#{content}\n"
+        output
       end.join("\n")
     end
 
