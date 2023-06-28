@@ -3,34 +3,26 @@
 Chatcopy is a simple command-line utility written in Crystal Lang that copies relevant parts of your code base into your clipboard based on a provided prompt. It uses OpenAI's GPT-3 model to parse the prompt and identify relevant code snippets.
 
 ## Dependencies
+
 - Crystal Language
-- OpenAI.cr
 
 ## Installation
+
 To use Chatcopy, ensure that you have Crystal Language installed on your system. You can find instructions on how to do this [here](https://crystal-lang.org/install/).
 
 Next, clone this repository to your local machine:
 
 ```
-git clone https://github.com/username/chatcopy.git
+git clone https://github.com/lancecarlson/chatcopy.git
 cd chatcopy
 ```
 
-Then, build the project:
+Then, install the project:
 
 ```
-crystal build src/chatcopy.cr
+make
+sudo make install
 ```
-
-You'll also need to install OpenAI.cr. You can do this by adding it to your project's `shard.yml`:
-
-```yaml
-dependencies:
-  openai:
-    github: openai/openai.cr
-```
-
-Then, run `shards install`.
 
 ## Usage
 To use Chatcopy, run the executable followed by the path to your prompt file:
@@ -43,7 +35,7 @@ If you do not provide a path, Chatcopy will default to using a file named `promp
 
 Chatcopy will parse the prompt, identify relevant code snippets in your codebase, and copy them to your clipboard. You can then paste the code wherever you need.
 
-For example, if your prompt file contains "I need to implement a function that reverses a string", Chatcopy will find any instances of such a function in your codebase and copy them to your clipboard.
+Chatcopy can also be used on knowledgebases hosted locally!
 
 ## Support
 If you encounter any issues or have any questions about Chatcopy, please open an issue [here](https://github.com/username/chatcopy/issues).
